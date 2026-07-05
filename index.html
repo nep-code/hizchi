@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hizchi Alcantara | Financial Advisor</title>
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hizchi Alcantara | Financial Advisor">
@@ -75,6 +76,14 @@
   }
 
   .site{ position: relative; z-index: 1; }
+
+  .background {
+    position: fixed;
+    inset: 0;
+    background: url(src/sunlife.png) center center / contain no-repeat;
+    opacity:0.02;
+    z-index: 0;
+  }
 
   h1,h2,h3{
     font-family: 'Fraunces', Georgia, serif;
@@ -577,6 +586,15 @@
     border-top: 1px solid var(--line-soft);
     padding: 56px 24px 40px;
   }
+
+  .footer-bg-logo{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 120px; height: 120px;
+    opacity: 0.04;
+    pointer-events:none;
+  }
   .footer-inner{
     max-width: 760px;
     margin: 0 auto;
@@ -648,6 +666,7 @@
 </head>
 <body>
 <div class="site">
+  <div class="background"></div>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header">
