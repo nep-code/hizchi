@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hizchi | Financial Advisor</title>
+<title>Hizchi | The Future Files</title>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hizchi | Financial Advisor">
-<meta property="og:description" content="Build a life you don't have to worry about. Financial planning that helps you enjoy today while protecting tomorrow.">
+<meta property="og:title" content="Hizchi | The Future Files">
+<meta property="og:description" content="Build a financial plan that helps you enjoy life today while protecting the future you're working hard to create.">
 <meta property="og:url" content="https://nep-code.github.io/hizchi/">
 <meta property="og:image" content="https://nep-code.github.io/hizchi/src/og-image.jpg">
 <meta property="og:image:width" content="756">
@@ -16,8 +16,8 @@
 
 <!-- Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hizchi | Financial Advisor">
-<meta name="twitter:description" content="Build a life you don't have to worry about.">
+<meta name="twitter:title" content="Hizchi | The Future Files">
+<meta name="twitter:description" content="Build a financial plan that helps you enjoy life today while protecting the future you're working hard to create.">
 <meta name="twitter:image" content="https://nep-code.github.io/hizchi/src/og-image.jpg">
 
 
@@ -81,9 +81,15 @@
     position: fixed;
     inset: 0;
     width: 100%; height: 100%;
-    background: url(src/sunlife.png) center center / 60% no-repeat;
+    background: url(src/sunlife.png) center center / contain no-repeat;
     opacity:0.02;
     z-index: 0;
+    animation: glowSun 9s ease-in-out infinite alternate;
+  }
+
+   @keyframes glowSun{
+    0%{ opacity: 0.04; transform: scale(1.1); }
+    100%{ opacity: 0.02; transform: scale(1); }
   }
 
   h1,h2,h3{
@@ -306,7 +312,7 @@
     letter-spacing: 0.02em;
   }
 
-  /* ============ TYPEFORM / APPLY ============ */
+  /* ============ GOOGLE FORM EMBED ============ */
   .apply-section{ padding-top: 56px; }
   .apply-section .heading-block{
     text-align:center;
@@ -324,80 +330,123 @@
   }
 
   .form-card{
-    background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
-    border: 1px solid var(--line-soft);
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
     border-radius: var(--radius);
-    padding: 4px;
-    box-shadow: 0 24px 60px -30px rgba(0,0,0,0.6);
-    transition: border-color 0.3s ease;
+    padding: 3px;
+    background: linear-gradient(160deg, rgba(240,187,13,0.5), rgba(240,187,13,0.05) 40%, rgba(240,187,13,0.02));
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.7);
+    transition: box-shadow 0.4s ease;
   }
-  .form-card:hover{ border-color: var(--line); }
+  .form-card:hover{
+    box-shadow: 0 30px 90px -25px rgba(240,187,13,0.22);
+  }
   .form-card-inner{
-    border: 1px dashed var(--line);
-    border-radius: calc(var(--radius) - 4px);
-    padding: 56px 32px;
-    text-align: center;
-    min-height: 300px;
+    position: relative;
+    background: var(--bg-panel);
+    border-radius: calc(var(--radius) - 3px);
+    overflow: hidden;
+  }
+  .form-card-inner .bracket{ z-index: 3; }
+
+  .form-topbar{
     display:flex;
-    flex-direction:column;
     align-items:center;
-    justify-content:center;
-  }
-  .form-card-inner .tag{
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--text-faint);
-    border: 1px solid var(--line-soft);
-    padding: 5px 10px;
-    border-radius: 999px;
-    margin-bottom: 18px;
-  }
-  .form-card-inner h3{
-    font-size: 21px;
-    color: var(--text);
-    max-width: 380px;
-  }
-  .form-card-inner p{
-    color: var(--text-muted);
-    font-size: 14px;
-    max-width: 380px;
-    margin: 12px 0 26px;
-  }
-  .cta-btn{
-    display:inline-flex;
-    align-items:center;
+    justify-content: space-between;
     gap: 10px;
-    background: var(--accent);
-    color: #17140a;
-    font-weight: 600;
-    font-size: 15px;
-    padding: 13px 30px;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 10px 30px -10px rgba(240,187,13,0.5);
+    padding: 14px 18px;
+    background: linear-gradient(180deg, var(--bg-panel-2), var(--bg-panel));
+    border-bottom: 1px solid var(--line-soft);
   }
-  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px -10px rgba(240,187,13,0.65); }
-  .cta-btn svg{ transition: transform 0.2s ease; }
-  .cta-btn:hover svg{ transform: translateX(3px); }
-  .form-meta{
-    margin-top: 16px;
+  .form-topbar .dots{ display:flex; gap:6px; }
+  .form-topbar .dots span{
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--line-soft);
+  }
+  .form-topbar .label{
+    display:flex;
+    align-items:center;
+    gap:8px;
     font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--text-faint);
+  }
+  .form-topbar .label svg{ width:13px; height:13px; color: var(--accent); }
+  .form-topbar .open-link{
     display:flex;
     align-items:center;
     gap:6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-soft);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
-  .form-meta svg{ width:13px; height:13px; }
+  .form-topbar .open-link:hover{
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(240,187,13,0.08);
+  }
+  .form-topbar .open-link svg{ width:12px; height:12px; }
 
-  .embed-slot-note{
-    margin-top: 14px;
-    font-size: 11px;
+  .gform-wrap{
+    position: relative;
+    background: var(--bg-panel);
+  }
+  .gform-wrap iframe{
+    display:block;
+    width: 100%;
+    height: 720px;
+    border: 0;
+    background: #fff;
+    /* nudge the perceived tone of the white Google Form canvas */
+    filter: brightness(0.98) contrast(1.01);
+  }
+  .gform-loading{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap: 14px;
+    background: var(--bg-panel);
     color: var(--text-faint);
-    font-family: 'SFMono-Regular', Consolas, monospace;
-    opacity: 0.6;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    transition: opacity 0.4s ease;
+  }
+  .gform-loading .spinner{
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--line-soft);
+    border-top-color: var(--accent);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  .gform-loading.hide{ opacity: 0; pointer-events: none; }
+
+  .form-footer-note{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding: 14px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  .form-footer-note svg{ width:13px; height:13px; color: var(--accent); }
+
+  @media (max-width: 640px){
+    .gform-wrap iframe{ height: 860px; }
+    .form-topbar .open-link span{ display:none; }
   }
 
   /* ============ ABOUT ============ */
@@ -521,7 +570,6 @@
 
   @media (max-width: 860px){
     .t-grid{ grid-template-columns: 1fr; }
-    .background { background-size: 80% auto; }
   }
 
   /* ============ FAQ ============ */
@@ -583,17 +631,11 @@
     max-width: 640px;
   }
 
-  /* ============ generic future-section placeholder style ============ */
-  .placeholder-section{
-    text-align:center;
-    color: var(--text-faint);
-    font-size: 13px;
-    border: 1px dashed var(--line-soft);
-    border-radius: var(--radius);
-    padding: 30px;
-    max-width: var(--maxw);
-    margin: 0 auto;
-  }
+  .faq-section a { padding:40px 20px 0; color: white; text-decoration: none; transition: color 0.2s ease; display:flex }
+  .faq-section h3 { margin:0; text-align:center; }
+  .faq-section a:hover { color: var(--accent); } 
+
+
 
   /* ============ FOOTER ============ */
   footer{
@@ -666,7 +708,7 @@
   @media (max-width: 640px){
     section{ padding: 48px 18px; }
     .form-card-inner{ padding: 40px 20px; }
-    .background { background-size: 120% auto; }
+    .background { background-size: 200% auto; }
   }
 
   
@@ -698,7 +740,10 @@
       <h1><em>Hizchi</em></h1>
       <span class="eyebrow">Financial Advisor</span>
       <h1>Live Fully Today.<br>Plan Wisely <em>For Tomorrow.</em></h1>
-      <p class="subhead">Because financial planning isn't about fear.<br class="hide-mobile"> <span class="accentline">It's about freedom.</span></p>
+      <!-- <p class="subhead">Because financial planning isn't about fear.<br class="hide-mobile"> <span class="accentline">It's about freedom.</span></p> -->
+      <p class="subhead">Build a financial plan that helps you <span class="accentline">enjoy life today</span> while <span class="accentline">protecting the future</span> you're working hard to create.</p>
+
+      
     </div>
   </section>
 
@@ -729,35 +774,50 @@
 
   <div class="divider"></div>
 
-  <!-- ============ SECTION: APPLY / TYPEFORM ============ -->
+  <!-- ============ SECTION: APPLY / GOOGLE FORM ============ -->
   <section class="apply-section" id="apply">
     <div class="section-inner reveal">
       <div class="heading-block">
         <h2>Take the <span class="accentword">Financial Clarity</span> Assessment</h2>
-        <p>It only takes about a minute — fill it out & schedule a call</p>
+        <p>Answer a few quick questions, then choose a time that works for you.</p>
       </div>
 
-      <!--
-        TYPEFORM EMBED SLOT
-        Replace the .form-card-inner block below with your live Typeform embed,
-        e.g. the standard embed snippet:
-        <div data-tf-live="YOUR_FORM_ID"></div>
-        <script src="//embed.typeform.com/next/embed.js"></script>
-      -->
-      <div class="form-card" id="typeform-slot">
+      <div class="form-card" id="gform-slot">
         <div class="form-card-inner">
-          <span class="tag">Typeform placeholder</span>
-          <h3>Welcome to Your Planning Journey</h3>
-          <p>Let us connect you with the guidance and clarity you need to plan confidently for what's ahead. Answer a few quick questions so we can tailor our approach to you.</p>
-          <button class="cta-btn" type="button">
-            Start
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </button>
-          <div class="form-meta">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            Takes 45 sec
+          <span class="bracket tl"></span>
+          <span class="bracket tr"></span>
+          <span class="bracket bl"></span>
+          <span class="bracket br"></span>
+
+          <div class="form-topbar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Financial Clarity Assessment
+            </div>
+            <a class="open-link" href="https://docs.google.com/forms/d/e/1FAIpQLSc_hgV5Jaau-s3i3RvcQJKWJiuTYH5ScvsNTuIk3Di2V_rvmA/viewform?usp=publish-editor" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>Open full screen</span>
+            </a>
           </div>
-          <div class="embed-slot-note">/* embed real Typeform here */</div>
+
+          <div class="gform-wrap">
+            <div class="gform-loading" id="gformLoading">
+              <div class="spinner"></div>
+              <span>Loading your assessment…</span>
+            </div>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSc_hgV5Jaau-s3i3RvcQJKWJiuTYH5ScvsNTuIk3Di2V_rvmA/viewform?embedded=true"
+              title="Financial Clarity Assessment"
+              onload="document.getElementById('gformLoading').classList.add('hide')">
+              Loading…
+            </iframe>
+          </div>
+
+          <div class="form-footer-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Your responses are kept confidential
+          </div>
         </div>
       </div>
     </div>
@@ -804,10 +864,9 @@
             </div>
             <div>
               <div class="t-name">Otep</div>
-              <div class="t-role">Fraud Analyst 2</div>
+              <div class="t-role">Talent Administrator & Coordinator</div>
             </div>
           </div>
-          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
@@ -821,7 +880,6 @@
               <div class="t-role">Territory Medical Specialist I</div>
             </div>
           </div>
-          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
@@ -835,7 +893,6 @@
               <div class="t-role">Distributor Specialist</div>
             </div>
           </div>
-          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
       </div>
     </div>
@@ -848,7 +905,7 @@
     <div class="section-inner reveal">
       <div class="heading-block">
         <h2>Frequently Asked <span class="accentword">Questions</span></h2>
-        <p>A few things people usually ask before their first call</p>
+        <p>Everything you need to know before booking your free consultation</p>
       </div>
       <div class="faq-list">
 
@@ -1098,28 +1155,17 @@
           </div></div>
         </div>
 
+        <a href="#apply"><h3>Still have questions? Feel free to ask. I’d rather you make informed financial decisions than rushed ones.
+        </h3></a>
       </div>
     </div>
   </section>
-
-  <!--
-    ============================================================
-    ADD FUTURE SECTIONS HERE, following this pattern:
-
-    <div class="divider"></div>
-    <section class="your-section" id="your-id">
-      <div class="section-inner reveal">
-        ...
-      </div>
-    </section>
-    ============================================================
-  -->
 
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-inner reveal">
       <img class="footer-logo" src="src/logo.jpg" alt="Hizchi Alcantara logo">
-      <p>Financial Advisor | Sun Life Philippines</p>
+      <p>Hizchi Alcantara | The Future Files <br>Financial Advisor, Sun Life Philippines</p>
       <p>Helping individuals and families build financial confidence through personalized planning.</p>
 
       <div class="social-row">
@@ -1154,11 +1200,6 @@
     const cmd = unmuted ? 'unMute' : 'mute';
     ytFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: cmd, args: [] }), '*');
     unmuteBtn.querySelector('span').textContent = unmuted ? 'Tap to mute' : 'Tap to unmute';
-  });
-
-  // ---- Typeform placeholder CTA ----
-  document.querySelector('.cta-btn').addEventListener('click', () => {
-    alert('Add your Typeform embed in the #typeform-slot section to make this live.');
   });
 
   // ---- FAQ accordion ----
