@@ -185,16 +185,27 @@
 
   /* ============ HERO ============ */
   .hero{
-    margin-top: -120px;
+    margin-top: -140px;
     padding-top: 0px;
     padding-bottom: 8px;
     text-align: center;
   }
-  .hero .eyebrow{ margin-bottom: 22px; }
+  .hero .eyebrow{ 
+    margin-bottom: 22px; 
+    border: 1px solid rgba(240,187,13,0.7); 
+    background: rgba(5,0,20,0.25); 
+    padding: 5px 15px;
+    border-radius: 999px;
+  }
+
   .hero h1{
     font-size: clamp(32px, 5.4vw, 54px);
     line-height: 1.08;
     color: var(--text);
+    filter:
+    drop-shadow(0 0 3px rgba(5, 0, 30, 0.7))
+    drop-shadow(0 0 8px rgba(5,0,30,0.4));
+    
   }
   .hero h1 em{
     font-style: italic;
@@ -224,7 +235,7 @@
   }
 
   /* ============ VIDEO ============ */
-  .video-section{ padding-top: 40px; }
+  .video-section{ padding-top: 20px; }
   .video-frame{
     position: relative;
     max-width: 760px;
@@ -514,12 +525,13 @@
   }
 
   /* ============ FAQ ============ */
-  .faq-section{ padding-top: 56px; }
+  .faq-section{ padding-top: 56px; display:flex; flex-direction:column; align-items:center; }
   .faq-section .heading-block{ text-align:center; margin-bottom: 30px; }
   .faq-section h2{ font-size: clamp(24px, 3.4vw, 32px); }
   .faq-section h2 .accentword{ color: var(--accent); font-style: italic; }
   .faq-list{
     border-top: 1px solid var(--line-soft);
+    max-width: 640px;
   }
   .faq-item{
     border-bottom: 1px solid var(--line-soft);
@@ -558,6 +570,13 @@
   .faq-answer p{
     margin: 0;
     padding: 0 4px 20px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 640px;
+  }
+    .faq-answer{
+    margin: 0;
     color: var(--text-muted);
     font-size: 14.5px;
     line-height: 1.65;
@@ -772,45 +791,51 @@
   <section class="testimonials-section" id="testimonials">
     <div class="section-inner reveal">
       <div class="heading-block">
-        <h2>What <span class="accentword">Clients</span> Are Saying</h2>
-        <p>Placeholder testimonials — swap in real client stories</p>
+        <h2>What <span class="accentword">People</span> Are Saying</h2>
+        <p>Real feedback from people who have attended Chi's workshops and financial planning sessions.</p>
       </div>
       <div class="t-grid">
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Placeholder testimonial text goes here. This is where a client will describe the clarity and confidence they gained from working with Hizchi."</p>
+          <p class="t-quote">"Sa totoo lang, hesitant talaga ako nung una kasi akala ko isa na naman itong seminar na puro motivation lang. Pero mali ako. Ang dami kong practical na natutunan kay Chi, lalo na kung paano ko mas maaayos ang finances ko at makakapagplano para sa future. Hindi siya namimilit o nagyayabang. Ramdam mo lang na gusto ka talaga niyang matuto."</p>
           <div class="t-person">
-            <div class="t-avatar"></div>
+            <div class="t-avatar">
+              <img src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/221781108_4879990772027440_8978988416742926100_n.jpg?stp=dst-jpg_tt6&cstp=mx720x720&ctp=s720x720&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=P44ei0ziEJMQ7kNvwF5C8t4&_nc_oc=Adpg9HQBqK7st7KuXMzTlKg812QqCIpgmTKTotOmwKdb_J1tAgWgAu466VXRfwJDFBU&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=SnmdxuRm55TYdpMr2TZBCw&_nc_ss=7b2a8&oh=00_AQCMGScISiuirUeoWaqEASwu95f5H932o0IPdpZSxewT5g&oe=6A514D05" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
+            </div>
             <div>
-              <div class="t-name">Client Name</div>
-              <div class="t-role">Role / Location</div>
+              <div class="t-name">Otep</div>
+              <div class="t-role">Fraud Analyst 2</div>
             </div>
           </div>
-          <span class="t-placeholder-tag">Placeholder</span>
+          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Placeholder testimonial text goes here. This is where a client will describe the clarity and confidence they gained from working with Hizchi."</p>
+          <p class="t-quote">"Isa sa pinakamagandang decision na ginawa ko yung makinig kay Hizchi. Dati kasi parang bahala na lang ako sa pera ko... kung ano ang pumasok, yun din ang lumalabas. Ngayon, mas naging disciplined ako sa paghawak ng finances ko. Hindi man overnight ang pagbabago, pero ang laking difference ng mindset ko dahil sa mga tinuro niya."</p>
           <div class="t-person">
-            <div class="t-avatar"></div>
+            <div class="t-avatar">
+              <img src="https://scontent.fmnl8-7.fna.fbcdn.net/v/t39.30808-6/714598738_28009131485342590_7859785929521945314_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rI57ITy01yUQ7kNvwFNv5Le&_nc_oc=AdpRTo2av_1tXoOTqBGFcQ2sg4IVsIh24EHrbLzmMbThBRB2zuZKjXxrO6LRdtZwzTU&_nc_zt=23&_nc_ht=scontent.fmnl8-7.fna&_nc_gid=qXIcXCG_u795QEitci9KLg&_nc_ss=7b2a8&oh=00_AQDAGgP_xO1YP2QTIUgojnJknBYxhEaqzOkORQYffhVihQ&oe=6A51690C" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
+            </div>
             <div>
-              <div class="t-name">Client Name</div>
-              <div class="t-role">Role / Location</div>
+              <div class="t-name">Noah</div>
+              <div class="t-role">Territory Business Manager</div>
             </div>
           </div>
-          <span class="t-placeholder-tag">Placeholder</span>
+          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
         <div class="t-card">
           <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Placeholder testimonial text goes here. This is where a client will describe the clarity and confidence they gained from working with Hizchi."</p>
+          <p class="t-quote">"Ang nagustuhan ko kay Chi, hindi niya pinaparamdam na kailangan mong maging expert sa pera para maintindihan ang financial planning. Simple lang siyang mag-explain at relatable ang mga examples niya. After ng session namin, mas naging malinaw sa akin kung ano ang gusto kong ma-achieve financially at kung paano magsisimula. Worth it talaga."</p>
           <div class="t-person">
-            <div class="t-avatar"></div>
+            <div class="t-avatar">
+              <img src="https://scontent.fmnl8-2.fna.fbcdn.net/v/t39.30808-1/471495663_8878345025552217_4972922433342815782_n.jpg?stp=dst-jpg_tt6&cstp=mx981x983&ctp=s200x200&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e99d92&_nc_ohc=XZMxPM8n3NMQ7kNvwHa9Zsy&_nc_oc=Ado_aysz0NK5zRT-rSoZOSJi2VzL1XEhkKVIjUreS2Se4vQ79uwk347ifuxNJ7CZsS8&_nc_zt=24&_nc_ht=scontent.fmnl8-2.fna&_nc_gid=V_E5WzmhYy6usJ5ZUfXqtA&_nc_ss=7b2a8&oh=00_AQCMIahvv5ovbZSHmbuwHVQC6aZQWzk9xnVJRxpzP3UVwg&oe=6A514E2D" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
+            </div>
             <div>
-              <div class="t-name">Client Name</div>
-              <div class="t-role">Role / Location</div>
+              <div class="t-name">BJ</div>
+              <div class="t-role">Supervisor</div>
             </div>
           </div>
-          <span class="t-placeholder-tag">Placeholder</span>
+          <!-- <span class="t-placeholder-tag">Placeholder</span> -->
         </div>
       </div>
     </div>
@@ -826,6 +851,7 @@
         <p>A few things people usually ask before their first call</p>
       </div>
       <div class="faq-list">
+
         <div class="faq-item" aria-expanded="false">
           <button class="faq-question">
             <span>Do I need to already have money saved up to talk to you?</span>
@@ -834,9 +860,17 @@
             </span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner">
-            <p>Placeholder answer. Explain here that the assessment and first conversation are about understanding someone's situation and goals, regardless of where they're starting from.</p>
+            <p>
+            Not at all.
+            <br><br>
+            Most people I talk to aren’t asking because they have extra money—they’re asking because they want clarity.
+            <br><br>
+            Our conversation is simply about understanding where you are today and identifying practical next steps based on your current situation. Whether you’re just starting your career, building a family, paying debts, or growing your income, you’re welcome here.
+            <br><br>
+            No pressure. No judgment.
           </div></div>
         </div>
+
         <div class="faq-item" aria-expanded="false">
           <button class="faq-question">
             <span>Is this a sales call?</span>
@@ -845,9 +879,18 @@
             </span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner">
-            <p>Placeholder answer. Clarify that recommendations, if any, are shared only after understanding the person's goals — not a one-size-fits-all pitch.</p>
+            <p>
+            No.
+            <br><br>
+            Think of it as a Financial Clarity Session.
+            <br><br>
+            I’ll ask a few questions about your goals, priorities, and current financial situation. If I believe there’s something that genuinely fits your needs, I’ll explain it. If not, you’ll still walk away with insights you can use.
+            <br><br>
+            The goal is to help you make better financial decisions—not to convince you to buy something.
+            </p>
           </div></div>
         </div>
+
         <div class="faq-item" aria-expanded="false">
           <button class="faq-question">
             <span>How long does the Financial Clarity Assessment take?</span>
@@ -856,9 +899,16 @@
             </span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner">
-            <p>Placeholder answer. Around a minute to complete, followed by a short call to walk through the results together.</p>
+            <p>
+            Usually around 20–30 minutes.
+            <br><br>
+            It’s a relaxed conversation, not an interview.
+            <br><br>
+            We’ll discuss where you are financially today, what you’re trying to achieve, and any concerns you may have so we can identify the best next step for you.
+            </p>
           </div></div>
         </div>
+
         <div class="faq-item" aria-expanded="false">
           <button class="faq-question">
             <span>What happens after I submit the form?</span>
@@ -867,9 +917,187 @@
             </span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner">
-            <p>Placeholder answer. Describe the scheduling step and what to expect on the call.</p>
+            <p>
+            You’ll receive a message from me within 24 hours.
+            <br><br>
+            We’ll schedule a time that’s convenient for you, either online or over a call. Before we meet, I’ll review your answers so our conversation can focus on what matters most to you—not generic advice.
+            </p>
           </div></div>
         </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>Will you ask me to buy insurance immediately?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            Not at all.
+            <br><br>
+            Some people end up getting a plan, while others simply leave with a clearer understanding of their finances.
+            <br><br>
+            The decision is always yours.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>What if I already have insurance?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            That’s actually great.
+            <br><br>
+            We can review whether your current coverage still matches your goals and lifestyle. Sometimes everything is already in place. Other times, small adjustments can make a big difference.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>What if I decide not to get anything?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            That’s completely okay.
+            <br><br>
+            I’d rather you make an informed decision than feel pressured into one.
+            <br><br>
+            If all you gain is financial clarity, that’s already a win.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>Is this free?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            Yes.
+            <br><br>
+            The Financial Clarity Assessment is completely free with no obligation.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>Can I invite my spouse or partner?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            Absolutely.
+            <br><br>
+            In fact, many couples find it helpful to make financial decisions together so everyone is aligned on future goals.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>What topics do we usually discuss?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p style="padding-bottom:0;">Depending on your situation, we may talk about:
+            <ul>
+              <li>Building an emergency fund</li>
+              <li>Protecting your family’s income</li>
+              <li>Saving for your child’s education</li>
+              <li>Retirement planning</li>
+              <li>Investing</li>
+              <li>Managing debt</li>
+              <li>Financial habits and goal-setting</li>
+            </ul>
+            <p>Every conversation is personalized.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>I’m still young. Isn’t it too early?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+              Actually, it’s one of the best times to start.
+              <br><br>When time is on your side, building wealth and protecting your future is often easier and more affordable.
+            </p>
+          </div></div>
+        </div>
+
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>Is my information confidential?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+              Yes.
+              <br><br>
+              Everything you share is treated with strict confidentiality and is used only to better understand your financial goals and recommend suitable solutions if needed.
+            </p>
+          </div></div>
+        </div>
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>I don’t know anything about investments or insurance.</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            That’s perfectly okay.
+            <br><br>
+            You don’t need prior knowledge.
+            <br><br>
+            My job is to explain everything in simple, practical language so you can make decisions with confidence—not confusion.
+            </p>
+          </div></div>
+        </div>
+        <div class="faq-item" aria-expanded="false">
+          <button class="faq-question">
+            <span>What if I’m not ready yet?</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>
+            That’s okay.
+            <br><br>
+            You don’t have to be ready to start the conversation.
+            <br><br>
+            Sometimes the most valuable thing you can gain isn’t a product—it’s clarity.
+            <br><br>
+            And clarity has a way of making the next financial decision much easier.
+            </p>
+          </div></div>
+        </div>
+
       </div>
     </div>
   </section>
