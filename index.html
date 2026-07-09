@@ -170,7 +170,7 @@
   /* ============ SECTION shell ============ */
   section{
     position: relative;
-    padding: 64px 24px;
+    padding: 60px 24px;
   }
   .section-inner{
     max-width: var(--maxw);
@@ -461,7 +461,7 @@
   }
 
   /* ============ ABOUT ============ */
-  .about-section{ padding-top: 56px; }
+  .about-section{ padding-top: 56px; padding-bottom: 40px; }
   .about-grid{
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -531,60 +531,240 @@
   }
 
   /* ============ TESTIMONIALS ============ */
-  .testimonials-section{ padding-top: 56px; }
-  .testimonials-section .heading-block{ text-align:center; margin-bottom: 36px; }
-  .testimonials-section h2{ font-size: clamp(24px, 3.4vw, 32px); }
-  .testimonials-section h2 .accentword{ color: var(--accent); font-style: italic; }
-  .t-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  .testimonials-section {
+  --tst-accent: #ffb62b;
+  --tst-accent-dim: rgba(255, 182, 43, 0.16);
+  --tst-card: rgba(0,0,10,0.15);
+  --tst-card-hover: #14161b;
+  --tst-border: rgba(255, 255, 255, 0.07);
+  --tst-text: #eeeeef;
+  --tst-muted: #9a9aa4;
+ 
+  padding: 60px 24px;
+  position: relative;
+  /* overflow: hidden; */
+}
+ 
+/* faint radial glow behind the section for depth */
+.testimonials-section::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--tst-accent-dim) 0%, transparent 70%);
+  pointer-events: none;
+}
+ 
+.testimonials-section .section-inner {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+ 
+.testimonials-section .heading-block {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+}
+ 
+.testimonials-section .heading-block h2 {
+  color: var(--tst-text);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+ 
+.testimonials-section .heading-block .accentword {
+  color: var(--tst-accent);
+}
+ 
+.testimonials-section .heading-block p {
+  color: var(--tst-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+ 
+/* ---------- grid ---------- */
+.t-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+ 
+/* ---------- card ---------- */
+.t-card {
+  background: var(--tst-card);
+  border: 1px solid var(--tst-border);
+  border-radius: 20px;
+  padding: 20px 20px 22px;
+  position: relative;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+ 
+.t-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 182, 43, 0.5);
+  background: var(--tst-card-hover);
+}
+ 
+/* decorative oversized quote glyph, the section's signature mark */
+.t-card::after {
+  content: "\201D";
+  position: absolute;
+  top: 6px;
+  right: 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--tst-accent);
+  opacity: 0.1;
+  pointer-events: none;
+}
+ 
+.t-stars {
+  color: var(--tst-accent);
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+ 
+/* ---------- screenshot ---------- */
+.t-shot-frame {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--tst-border);
+  cursor: zoom-in;
+  position: relative;
+  background: #000;
+}
+ 
+.t-shot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+ 
+.t-card:hover .t-shot-frame img {
+  transform: scale(1.03);
+}
+ 
+.t-shot-frame .t-zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+ 
+.t-card:hover .t-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+.t-zoom-hint svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--tst-accent);
+}
+ 
+/* ---------- lightbox ---------- */
+.t-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 6, 8, 0.92);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  padding: 40px 20px;
+}
+ 
+.t-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+ 
+.t-lightbox img {
+  max-width: min(420px, 92vw);
+  max-height: 88vh;
+  width: auto;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+ 
+.t-lightbox.is-open img {
+  transform: scale(1);
+}
+ 
+.t-lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--tst-text);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.t-lightbox-close:hover {
+  border-color: var(--tst-accent);
+  color: var(--tst-accent);
+}
+ 
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  .testimonials-section {
+    padding: 60px 18px;
   }
-  .t-card{
-    background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
-    border: 1px solid var(--line-soft);
-    border-radius: var(--radius);
-    padding: 26px 22px;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  .t-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
   }
-  .t-card:hover{
-    transform: translateY(-6px);
-    border-color: var(--line);
-    box-shadow: 0 20px 40px -24px rgba(240,187,13,0.3);
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .t-card,
+  .t-shot-frame img,
+  .t-zoom-hint,
+  .t-lightbox,
+  .t-lightbox img {
+    transition: none;
   }
-  .t-stars{ color: var(--accent); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
-  .t-quote{
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin: 0 0 20px;
-  }
-  .t-person{ display:flex; align-items:center; gap: 12px; }
-  .t-avatar{
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 1px dashed var(--line);
-    flex-shrink: 0;
-  }
-  .t-name{ font-size: 13px; font-weight: 600; color: var(--text); }
-  .t-role{ font-size: 12px; color: var(--text-faint); }
-  .t-placeholder-tag{
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-faint);
-    opacity: 0.6;
-    margin-top: 14px;
-    display:block;
-  }
-
-  @media (max-width: 860px){
-    .t-grid{ grid-template-columns: 1fr; }
-  }
+}
 
   /* ============ FAQ ============ */
-  .faq-section{ padding-top: 56px; display:flex; flex-direction:column; align-items:center; }
+  .faq-section{ padding-top: 56px;  padding-bottom: 40px; display:flex; flex-direction:column; align-items:center; }
   .faq-section .heading-block{ text-align:center; margin-bottom: 30px; }
   .faq-section h2{ font-size: clamp(24px, 3.4vw, 32px); }
   .faq-section h2 .accentword{ color: var(--accent); font-style: italic; }
@@ -731,6 +911,128 @@
     *{ scroll-behavior: auto !important; transition: none !important; animation: none !important; }
     .reveal{ opacity: 1; transform: none; }
   }
+
+
+  /* ============ CTA BUTTON ============ */
+  .cta-section { padding: 0px 24px 60px; text-align: center; }
+  .cta-assess {
+    --cta-bg-a: #ffb62b;
+    --cta-bg-b: #ffd863;
+    --cta-accent: #ffa600;
+    --cta-text: #14161b;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: clamp(14px, 3vw, 18px) clamp(28px, 5vw, 42px);
+    min-height: 52px;
+
+    font-size: clamp(15px, 2.2vw, 17px);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--cta-text);
+    text-decoration: none;
+    white-space: nowrap;
+
+    background: linear-gradient(135deg, var(--cta-bg-a), var(--cta-bg-b));
+    border-radius: 999px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.08) inset,
+      0 8px 20px -8px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,255,255,0.06);
+
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    cursor: pointer;
+
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: cta-breathe 3.2s ease-in-out infinite;
+  }
+
+  /* ambient breathing glow so the CTA quietly draws the eye */
+  @keyframes cta-breathe {
+    0%, 100% {
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 8px 20px -8px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 0 0 0 rgba(255,182,43,0.28);
+    }
+    50% {
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 10px 26px -8px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 22px 4px rgba(255,182,43,0.22);
+    }
+  }
+
+  /* shimmer sweep */
+  .cta-assess::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-18deg);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .cta-assess__text { position: relative; z-index: 2; }
+
+  .cta-assess__icon {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .cta-assess__icon svg { width: 18px; height: 18px; }
+
+  /* hover only on devices that truly support hover (skips being "sticky" on touch) */
+  @media (hover: hover) and (pointer: fine) {
+    .cta-assess:hover {
+      transform: translateY(-2px) scale(1.015);
+    }
+    .cta-assess:hover::before {
+      animation: cta-sweep 1.1s ease forwards;
+    }
+    .cta-assess:hover .cta-assess__icon {
+      transform: translateX(4px);
+    }
+  }
+  @keyframes cta-sweep {
+    to { left: 130%; }
+  }
+
+  /* tactile press feedback — works for mouse AND touch */
+  .cta-assess:active {
+    transform: translateY(0) scale(0.97);
+    transition-duration: 0.12s;
+  }
+
+  .cta-assess:focus-visible {
+    outline: 2px solid var(--cta-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 420px) {
+    .cta-assess { width: 100%; max-width: 340px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-assess { animation: none; }
+    .cta-assess::before { display: none; }
+    .cta-assess:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -788,7 +1090,7 @@
     <div class="section-inner reveal">
       <div class="heading-block">
         <h2>Take the <span class="accentword">Financial Clarity</span> Assessment</h2>
-        <p>Answer a few quick questions, then choose a time that works for you.</p>
+        <p>Answer a few quick questions. I'll reach out within 24 hours to schedule a convenient time.</p>
       </div>
 
       <div class="form-card" id="gform-slot">
@@ -854,57 +1156,109 @@
     </div>
   </section>
 
+  <!-- ============ SECTION: CTA ============ -->
+  <section class="cta-section">
+  <a href="#apply" class="cta-assess">
+    <span class="cta-assess__text">Start My Free Assessment</span>
+    <span class="cta-assess__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </span>
+  </a>
+  </section>
+
   <div class="divider"></div>
 
+ 
+  
   <!-- ============ SECTION: TESTIMONIALS ============ -->
   <section class="testimonials-section" id="testimonials">
     <div class="section-inner reveal">
       <div class="heading-block">
         <h2>What <span class="accentword">People</span> Are Saying</h2>
-        <p>Real feedback from people who have attended Chi's workshops and financial planning sessions.</p>
+        <p>Real feedback from people who have attended my workshops and financial planning sessions.</p>
       </div>
-      <div class="t-grid">
-        <div class="t-card">
-          <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Sa totoo lang, hesitant talaga ako nung una kasi akala ko isa na naman itong seminar na puro motivation lang. Pero mali ako. Ang dami kong practical na natutunan kay Chi, lalo na kung paano ko mas maaayos ang finances ko at makakapagplano para sa future. Hindi siya namimilit o nagyayabang. Ramdam mo lang na gusto ka talaga niyang matuto."</p>
-          <div class="t-person">
-            <div class="t-avatar">
-              <img src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/221781108_4879990772027440_8978988416742926100_n.jpg?stp=dst-jpg_tt6&cstp=mx720x720&ctp=s720x720&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=P44ei0ziEJMQ7kNvwF5C8t4&_nc_oc=Adpg9HQBqK7st7KuXMzTlKg812QqCIpgmTKTotOmwKdb_J1tAgWgAu466VXRfwJDFBU&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=SnmdxuRm55TYdpMr2TZBCw&_nc_ss=7b2a8&oh=00_AQCMGScISiuirUeoWaqEASwu95f5H932o0IPdpZSxewT5g&oe=6A514D05" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
-            </div>
-            <div>
-              <div class="t-name">Otep</div>
-              <div class="t-role">Talent Administrator & Coordinator</div>
-            </div>
-          </div>
-        </div>
-        <div class="t-card">
-          <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Isa sa pinakamagandang decision na ginawa ko yung makinig kay Hizchi. Dati kasi parang bahala na lang ako sa pera ko... kung ano ang pumasok, yun din ang lumalabas. Ngayon, mas naging disciplined ako sa paghawak ng finances ko. Hindi man overnight ang pagbabago, pero ang laking difference ng mindset ko dahil sa mga tinuro niya."</p>
-          <div class="t-person">
-            <div class="t-avatar">
-              <img src="https://scontent.fmnl8-7.fna.fbcdn.net/v/t39.30808-6/714598738_28009131485342590_7859785929521945314_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rI57ITy01yUQ7kNvwFNv5Le&_nc_oc=AdpRTo2av_1tXoOTqBGFcQ2sg4IVsIh24EHrbLzmMbThBRB2zuZKjXxrO6LRdtZwzTU&_nc_zt=23&_nc_ht=scontent.fmnl8-7.fna&_nc_gid=qXIcXCG_u795QEitci9KLg&_nc_ss=7b2a8&oh=00_AQDAGgP_xO1YP2QTIUgojnJknBYxhEaqzOkORQYffhVihQ&oe=6A51690C" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
-            </div>
-            <div>
-              <div class="t-name">Noah</div>
-              <div class="t-role">Territory Medical Specialist I</div>
-            </div>
-          </div>
-        </div>
-        <div class="t-card">
-          <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Ang nagustuhan ko kay Chi, hindi niya pinaparamdam na kailangan mong maging expert sa pera para maintindihan ang financial planning. Simple lang siyang mag-explain at relatable ang mga examples niya. After ng session namin, mas naging malinaw sa akin kung ano ang gusto kong ma-achieve financially at kung paano magsisimula. Worth it talaga."</p>
-          <div class="t-person">
-            <div class="t-avatar">
-              <img src="https://scontent.fmnl8-2.fna.fbcdn.net/v/t39.30808-1/471495663_8878345025552217_4972922433342815782_n.jpg?stp=dst-jpg_tt6&cstp=mx981x983&ctp=s200x200&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e99d92&_nc_ohc=XZMxPM8n3NMQ7kNvwHa9Zsy&_nc_oc=Ado_aysz0NK5zRT-rSoZOSJi2VzL1XEhkKVIjUreS2Se4vQ79uwk347ifuxNJ7CZsS8&_nc_zt=24&_nc_ht=scontent.fmnl8-2.fna&_nc_gid=V_E5WzmhYy6usJ5ZUfXqtA&_nc_ss=7b2a8&oh=00_AQCMIahvv5ovbZSHmbuwHVQC6aZQWzk9xnVJRxpzP3UVwg&oe=6A514E2D" alt="Testimonial Avatar" style="width:100%; height:100%; border-radius:50%">
-            </div>
-            <div>
-              <div class="t-name">BJ</div>
-              <div class="t-role">Distributor Specialist</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+      <!-- Cards render here from the data array below -->
+      <div class="t-grid" id="testimonialGrid"></div>
     </div>
+  </section>
+  
+  <!-- Lightbox for full-size screenshot viewing -->
+  <div class="t-lightbox" id="testimonialLightbox">
+    <button class="t-lightbox-close" id="testimonialLightboxClose" aria-label="Close">&times;</button>
+    <img src="" alt="Full testimonial screenshot" id="testimonialLightboxImg">
+  </div>
+  
+  <script>
+    const TESTIMONIALS = [
+      { shot: "src/testimonials/01.jpg" },
+      { shot: "src/testimonials/02.jpg" },
+      { shot: "src/testimonials/03.jpg" }
+    ];
+
+  
+    function renderTestimonials() {
+      const grid = document.getElementById("testimonialGrid");
+      grid.innerHTML = TESTIMONIALS.map((t, i) => `
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <div class="t-shot-frame" data-shot="${t.shot}" data-index="${i}" role="button" tabindex="0" aria-label="View full testimonial screenshot">
+            <img src="${t.shot}" alt="Client testimonial screenshot" loading="lazy">
+            <span class="t-zoom-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </span>
+          </div>
+        </div>
+      `).join("");
+  
+      // wire up click + keyboard to open lightbox
+      grid.querySelectorAll(".t-shot-frame").forEach(frame => {
+        const open = () => openLightbox(frame.dataset.shot);
+        frame.addEventListener("click", open);
+        frame.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
+    }
+  
+    function openLightbox(src) {
+      const lb = document.getElementById("testimonialLightbox");
+      document.getElementById("testimonialLightboxImg").src = src;
+      lb.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+  
+    function closeLightbox() {
+      const lb = document.getElementById("testimonialLightbox");
+      lb.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+  
+    document.getElementById("testimonialLightboxClose").addEventListener("click", closeLightbox);
+    document.getElementById("testimonialLightbox").addEventListener("click", e => {
+      if (e.target.id === "testimonialLightbox") closeLightbox();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeLightbox();
+    });
+  
+    renderTestimonials();
+  </script>
+
+
+  <!-- ============ SECTION: CTA ============ -->
+  <section class="cta-section">
+  <a href="#apply" class="cta-assess">
+    <span class="cta-assess__text">Start My Free Assessment</span>
+    <span class="cta-assess__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </span>
+  </a>
   </section>
 
   <div class="divider"></div>
@@ -984,9 +1338,7 @@
           </button>
           <div class="faq-answer"><div class="faq-answer-inner">
             <p>
-            You’ll receive a message from me within 24 hours.
-            <br><br>
-            We’ll schedule a time that’s convenient for you, either online or over a call. Before we meet, I’ll review your answers so our conversation can focus on what matters most to you—not generic advice.
+            Within 24 hours, I'll personally review your responses and reach out to schedule a free consultation at a time that's convenient for you. This allows our conversation to focus on your goals, concerns, and priorities instead of generic financial advice.
             </p>
           </div></div>
         </div>
@@ -1168,6 +1520,16 @@
         </h3></a>
       </div>
     </div>
+  </section>
+
+  <!-- ============ SECTION: CTA ============ -->
+  <section class="cta-section">
+  <a href="#apply" class="cta-assess">
+    <span class="cta-assess__text">Start My Free Assessment</span>
+    <span class="cta-assess__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </span>
+  </a>
   </section>
 
   <!-- ============ FOOTER ============ -->
